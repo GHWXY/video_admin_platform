@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/services_video/user/login',
+    url: '/services_authority/admin/index/login',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/services_video/user/info',
+    url: '/services_authority/admin/index/info',
     method: 'get',
     params: { token }
   })
@@ -18,7 +18,7 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: '/vue-admin-template/user/logout',
+    url: '/services_authority/admin/index/logout',
     method: 'post'
   })
 }

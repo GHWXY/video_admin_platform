@@ -36,8 +36,8 @@
       </li>
     </ul>
 
-    <!-- 添加和修改章节表单 -->
-    <el-dialog :visible.sync="dialogChapterVisible" title="添加章节">
+    <!-- 添加和修改章节表单 :visible.sync="dialogChapterVisible"-->
+    <el-dialog  title="添加章节">
       <el-form :model="chapter" label-width="120px">
         <el-form-item label="章节标题">
           <el-input v-model="chapter.title" />
@@ -52,8 +52,8 @@
       </div>
     </el-dialog>
 
-    <!--添加小节的对话框-->
-    <el-dialog :visible.sync="dialogVideoFormVisible" title="添加小节">
+    <!--添加小节的对话框   :visible.sync="dialogVideoFormVisible"-->
+    <el-dialog  title="添加小节">
       <el-form :model="contentVideo" label-width="120px">
         <el-form-item label="小节标题">
           <el-input v-model="contentVideo.title" />

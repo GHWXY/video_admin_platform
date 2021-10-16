@@ -32,6 +32,8 @@ export default {
     ]),
     routes() {
       // return this.$router.options.routes
+      console.log(global.antRouter)
+      debugger
       this.$router.options.routes.concat(global.antRouter)
     },
     activeMenu() {
