@@ -110,7 +110,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       getMoveRouter().then(response => {
         const menus = response.data.menuList
-        debugger
         menus.push({
           path: '/404',
           component: '404',
@@ -120,7 +119,7 @@ const actions = {
           redirect: '/404',
           hidden: true
         })
-        commit('SET_MENU', menus.reverse()) // 把name 保存到vuex中
+        commit('SET_MENU', menus.reverse()) // 把name 保存到vuex中   .reverse()反转
         resolve()
       }).catch(error => {
         reject(error)

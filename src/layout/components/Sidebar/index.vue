@@ -30,11 +30,12 @@ export default {
     ...mapGetters([
       'sidebar'
     ]),
+    // eslint-disable-next-line vue/return-in-computed-property
     routes() {
       // return this.$router.options.routes
-      console.log(global.antRouter)
-      debugger
-      this.$router.options.routes.concat(global.antRouter)
+      const routes = this.$router.options.routes.concat(global.antRouter)
+      console.log('routers', routes)
+      return routes
     },
     activeMenu() {
       const route = this.$route

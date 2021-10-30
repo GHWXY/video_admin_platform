@@ -53,7 +53,7 @@
       </el-table-column>
     </el-table>
     <!--添加菜单的窗口  :visible.sync="dialogFormVisible"-->
-    <el-dialog :title="dialogFormValue">
+    <el-dialog :visible.sync="dialogFormVisible" :title="dialogFormValue">
       <el-form ref="menu" :model="menu" :rules="menuValidateRules" label-width="120px">
         <el-form-item label="菜单名称" prop="name">
           <el-input v-model="menu.name" />
@@ -72,7 +72,7 @@
       </div>
     </el-dialog>
     <!-- 添加权限的窗口   :visible.sync="dialogPermissionVisible"-->
-    <el-dialog  title="添加功能权限">
+    <el-dialog :visible.sync="dialogPermissionVisible" title="添加功能权限">
       <el-form ref="permission" :model="permission" :rules="permissionValidateRules" label-width="120px">
         <el-form-item label="功能名称" prop="name">
           <el-input v-model="permission.name" />

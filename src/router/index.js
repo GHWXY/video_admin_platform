@@ -46,6 +46,34 @@ export const constantRoutes = [
       meta: { title: '首页', icon: 'dashboard' }
     }]
   },
+  // {
+  //   path: '/author',
+  //   component: Layout,
+  //   // redirect: '/author/table',
+  //   name: '创作者管理',
+  //   meta: { title: '创作者管理', icon: 'el-icon-s-help' },
+  //   children: [
+  //     {
+  //       path: 'table',
+  //       name: '作者列表',
+  //       component: () => import('@/views/video/author/list'),
+  //       meta: { title: '作者列表', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'save',
+  //       name: '添加作者',
+  //       component: () => import('@/views/video/author/save'),
+  //       meta: { title: '添加作者', icon: 'tree' }
+  //     },
+  //     {
+  //       path: 'edit/:id',
+  //       name: '编辑',
+  //       component: () => import('@/views/video/author/save'),
+  //       meta: { title: '编辑', icon: 'tree' },
+  //       hidden: true
+  //     }
+  //   ]
+  // },
 
   // region 没有整合security之前
   /*
@@ -237,11 +265,11 @@ export const constantRoutes = [
   },*/
   // endregion 没有整合security之前
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

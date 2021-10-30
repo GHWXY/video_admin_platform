@@ -3,15 +3,15 @@
     <!--查询表单-->
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item>
-        <el-input v-model="searchObj.username" placeholder="用户名"/>
+        <el-input v-model="searchObj.username" placeholder="用户名" />
       </el-form-item>
       <el-button type="primary" icon="el-icon-search" @click="fetchData()">查询</el-button>
       <el-button type="default" @click="resetData()">清空</el-button>
     </el-form>
     <!-- 工具条 v-if="hasPerm('user.add')"   v-if="hasPerm('user.remove')"-->
     <div>
-      <el-button type="danger" size="mini" @click="addUser()"  >添加</el-button>
-      <el-button type="danger" size="mini" @click="removeRows()" >批量删除</el-button>
+      <el-button v-if="hasPerm('user.add')" type="danger" size="mini" @click="addUser()">添加</el-button>
+      <el-button v-if="hasPerm('user.remove')" type="danger" size="mini" @click="removeRows()">批量删除</el-button>
     </div>
     <!--用户列表 -->
     <el-table
@@ -19,34 +19,37 @@
       :data="list"
       stripe
       style="width: 100%"
-      @selection-change="handleSelectionChange">
+      @selection-change="handleSelectionChange"
+    >
       <el-table-column
         type="selection"
-        width="55" />
+        width="55"
+      />
       <el-table-column
         label="序号"
         width="70"
-        align="center">
+        align="center"
+      >
         <template slot-scope="scope">
           {{ (page - 1) * limit + scope.$index + 1 }}
         </template>
       </el-table-column>
       <el-table-column prop="username" label="用户名" width="150" />
       <el-table-column prop="nickName" label="用户昵称" />
-      <el-table-column prop="gmtCreate" label="创建时间" width="180"/>
+      <el-table-column prop="gmtCreate" label="创建时间" width="180" />
       <el-table-column label="操作" width="250" align="center">
         <template slot-scope="scope">
           <router-link :to="'/authority/user/role/'+scope.row.id">
-<!-- v-if="hasPerm('user.assgin')"            -->
-            <el-button type="success" size="mini" >绑定角色</el-button>
+            <!-- v-if="hasPerm('user.assgin')"            -->
+            <el-button v-if="hasPerm('user.assgin')" type="success" size="mini">绑定角色</el-button>
           </router-link>
           &nbsp;
-          <router-link :to="'/authority/user/update/'+scope.row.id" >
-<!-- v-if="hasPerm('user.update')"           -->
-            <el-button type="primary" size="mini" >修改</el-button>
+          <router-link :to="'/authority/user/update/'+scope.row.id">
+            <!-- v-if="hasPerm('user.update')"           -->
+            <el-button v-if="hasPerm('user.update')" type="primary" size="mini">修改</el-button>
           </router-link>
-<!--    v-if="hasPerm('user.remove')"      -->
-          <el-button type="danger" @click="removeDataById(scope.row.id)"  size="mini" >删除</el-button>
+          <!--    v-if="hasPerm('user.remove')"      -->
+          <el-button v-if="hasPerm('user.remove')" type="danger" size="mini" @click="removeDataById(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -79,21 +82,21 @@ export default {
     }
   },
   created() {
-    /**加载页面数据*/
+    /** 加载页面数据*/
     this.fetchData()
   },
   methods: {
-    /**当页码发生改变的时候*/
+    /** 当页码发生改变的时候*/
     changeSize(size) {
       console.log(size)
       this.limit = size
       this.fetchData(1)
     },
-    addUser(){/**添加用户,跳转到添加路由*/
-    this.$router.push({ path: '/authority/user/add' })
+    addUser() { /** 添加用户,跳转到添加路由*/
+      this.$router.push({ path: '/authority/user/add' })
     },
 
-    /**加载用户数据*/
+    /** 加载用户数据*/
     fetchData(page = 1) {
       this.page = page
       user.getPageList(this.page, this.limit, this.searchObj).then(
@@ -105,13 +108,13 @@ export default {
         }
       )
     },
-    /**重置查询表单*/
+    /** 重置查询表单*/
     resetData() {
       console.log('重置查询表单')
       this.searchObj = {}
       this.fetchData()
     },
-    /**根据id删除数据*/
+    /** 根据id删除数据*/
     removeDataById(id) {
       this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -121,7 +124,7 @@ export default {
         // 点击确定，远程调用ajax
         return user.removeById(id)
       }).then((response) => {
-        this.fetchData(this.page)/**重新加载列表*/
+        this.fetchData(this.page)/** 重新加载列表*/
         if (response.success) {
           this.$message({
             type: 'success',
@@ -135,11 +138,11 @@ export default {
         })
       })
     },
-    /**当表格复选框选项发生变化的时候触发*/
+    /** 当表格复选框选项发生变化的时候触发*/
     handleSelectionChange(selection) {
       this.multipleSelection = selection
     },
-    /**批量删除*/
+    /** 批量删除*/
     removeRows() {
       if (this.multipleSelection.length === 0) {
         this.$message({

@@ -11,8 +11,8 @@
 
     <!-- 工具条 -->
     <div>
-      <el-button type="danger" size="mini" @click="addUser()" >添加</el-button>
-      <el-button type="danger" size="mini" @click="removeRows()">批量删除</el-button>
+      <el-button type="danger" size="mini" @click="addUser()" v-if="hasPerm('role.add')" >添加</el-button>
+      <el-button type="danger" size="mini" @click="removeRows()" v-if="hasPerm('role.remove')">批量删除</el-button>
     </div>
     <!-- 角色列表 -->
     <el-table
