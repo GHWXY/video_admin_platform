@@ -14,7 +14,7 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-import {hasBtnPermission} from './utils/button-control'
+import { hasBtnPermission } from './utils/button-control'
 
 /**
  * If you don't want to use mock-server

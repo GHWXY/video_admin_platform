@@ -44,6 +44,7 @@ router.beforeEach(async(to, from, next) => {
           const menus = filterAsyncRouter(store.getters.menus) // 过滤路由
           router.addRoutes(menus) // 动态添加路由
           global.antRouter = menus // 将路由数据传递给全局变量，做侧边栏渲染的工作
+          console.log('dddd', router)
           next('/') // 正常走
           // next()
         } catch (error) {
