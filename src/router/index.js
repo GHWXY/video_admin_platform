@@ -134,7 +134,7 @@ export const constantRoutes = [
     redirect: '/category/list',
     name: '视频分类管理',
     meta: { title: '视频分类管理', icon: 'el-icon-s-help' },
-    children: [
+    children: [y
       {
         path: 'list',
         name: '视频分类列表',
